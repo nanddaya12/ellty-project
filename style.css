@@ -1,23 +1,20 @@
-/* --- Global Setup & Variables --- */
+/* --- Variables for Clean Code --- */
 :root {
-    --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --page-bg: #F0F2F5; /* Light grey background from Figma */
+    --font-family: 'Inter', system-ui, sans-serif;
+    --page-bg: #F0F2F5; 
     --card-bg: #FFFFFF;
-    --text-color: #1F2937; /* Dark text */
-    --border-color: #D1D5DB; /* Light grey border for checkbox */
-    --primary-blue: #2563EB; /* Blue from the checked state */
-    --primary-yellow: #FACC15; /* Yellow from the button */
-    --primary-yellow-hover: #FBBF24; /* A slightly darker yellow for hover */
+    --text-color: #1F2937; 
+    --border-color: #D1D5DB; /* Used for the 1px card border and default checkbox */
+    --primary-blue: #2563EB; 
+    --primary-yellow: #FACC15; 
+    --primary-yellow-hover: #FBBF24; 
 }
 
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body, html {
-    height: 100%;
 }
 
 body {
@@ -25,67 +22,63 @@ body {
     background-color: var(--page-bg);
 }
 
-/* --- Page Wrapper --- */
-/* Uses Grid to perfectly center the component on the page */
+/* Centering the component */
 .page-wrapper {
     display: grid;
     place-items: center;
     min-height: 100vh;
-    padding: 20px;
 }
 
-/* --- Component Card --- */
-/* This is "Frame 8445891" */
+/* --- Component Card Styling (UPDATED) --- */
 .component-card {
-    width: 344px; /* From Figma Dev Mode */
+    width: 344px; 
     background-color: var(--card-bg);
-    padding: 16px; /* From Figma Dev Mode */
-    border-radius: 8px; /* Standard soft radius */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow */
     
-    /* Use Flexbox to stack the list and button */
+    /* ***** NEW SPECIFICATIONS APPLIED HERE ***** */
+    padding: 16px 8px 16px 8px; /* Top: 16, Right: 8, Bottom: 16, Left: 8 */
+    border-radius: 16px; /* New: 16px Border Radius */
+    border: 1px solid var(--border-color); /* New: 1px Border */
+    /* ******************************************* */
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
     display: flex;
     flex-direction: column;
-    gap: 16px; /* Space between the list and the button */
+    gap: 16px; 
 }
 
-/* --- Page List --- */
 .page-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 16px; /* Space between each list item */
+    gap: 16px; 
 }
 
 .page-item {
     display: flex;
-    justify-content: space-between; /* Pushes text left, checkbox right */
+    justify-content: space-between; 
     align-items: center;
     font-size: 16px;
     color: var(--text-color);
 }
 
-/* --- Custom Checkbox --- */
+/* --- Custom Checkbox Styling --- */
+
 .custom-checkbox-container {
     position: relative;
     display: block;
     width: 20px;
     height: 20px;
     cursor: pointer;
-    /* Prevents text selection on rapid clicks */
     user-select: none; 
 }
 
-/* Hide the default HTML checkbox */
 .hidden-checkbox {
     position: absolute;
     opacity: 0;
-    cursor: pointer;
     height: 0;
     width: 0;
 }
 
-/* Style the new, custom checkbox (the empty box) */
 .custom-checkbox {
     position: absolute;
     top: 0;
@@ -98,7 +91,6 @@ body {
     transition: all 0.2s ease;
 }
 
-/* Style the checkmark (hidden by default) */
 .custom-checkbox::after {
     content: "";
     position: absolute;
@@ -112,20 +104,16 @@ body {
     transform: rotate(45deg);
 }
 
-/* --- Checkbox Checked State --- */
-
-/* When the hidden box is checked, style our custom box */
 .hidden-checkbox:checked + .custom-checkbox {
     background-color: var(--primary-blue);
     border-color: var(--primary-blue);
 }
 
-/* When the hidden box is checked, show the checkmark */
 .hidden-checkbox:checked + .custom-checkbox::after {
     display: block;
 }
 
-/* --- Done Button --- */
+/* --- Done Button Styling --- */
 .done-button {
     width: 100%;
     padding: 12px 0;
@@ -133,7 +121,7 @@ body {
     color: var(--text-color);
     font-family: var(--font-family);
     font-size: 16px;
-    font-weight: 500; /* Medium weight */
+    font-weight: 500; 
     border: none;
     border-radius: 6px;
     cursor: pointer;
